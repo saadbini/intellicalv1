@@ -28,9 +28,7 @@ class MyContactsContentProvider {
         fun getSimpleContacts(context: Context, cursor: Cursor?): ArrayList<SimpleContact> {
             val contacts = ArrayList<SimpleContact>()
             val packageName = context.packageName.removeSuffix(".debug")
-            if (packageName != "com.saza.dialer" && packageName != "com.saza.smsmessenger" && packageName != "com.saza.calendar.pro") {
-                return contacts
-            }
+
 
             try {
                 cursor?.use {
@@ -64,9 +62,7 @@ class MyContactsContentProvider {
         fun getContacts(context: Context, cursor: Cursor?): ArrayList<Contact> {
             val contacts = ArrayList<Contact>()
             val packageName = context.packageName.removeSuffix(".debug")
-            if (packageName != "com.saza.dialer" && packageName != "com.saza.smsmessenger" && packageName != "com.saza.calendar.pro") {
-                return contacts
-            }
+
 
             try {
                 cursor?.use {

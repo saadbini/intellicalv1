@@ -28,8 +28,8 @@
 
 
     <queries>
-        <package android:name="com.saza.calendar.debug" />
-        <package android:name="com.saza.calendar" />
+        <package android:name="com.saza.intellical.debug" />
+        <package android:name="com.saza.intellical" />
     </queries>
 
     <uses-feature

@@ -16,9 +16,6 @@ import com.saza.commons.models.Release
 
 fun ComponentActivity.appLaunchedCompose(
     appId: String,
-    showUpgradeDialog: () -> Unit,
-    showDonateDialog: () -> Unit,
-    showRateUsDialog: () -> Unit
 ) {
     baseConfig.internalStoragePath = getInternalStoragePath()
     updateSDCardPath()
@@ -54,21 +51,9 @@ fun ComponentActivity.appLaunchedCompose(
     }
 
     baseConfig.appRunCount++
-    if (baseConfig.appRunCount % 30 == 0 && !isAProApp()) {
-        if (!resources.getBoolean(R.bool.hide_google_relations)) {
-            if (getCanAppBeUpgraded()) {
-                showUpgradeDialog()
-            } else if (!isOrWasThankYouInstalled()) {
-                showDonateDialog()
-            }
-        }
-    }
 
-    if (baseConfig.appRunCount % 40 == 0 && !baseConfig.wasAppRated) {
-        if (!resources.getBoolean(R.bool.hide_google_relations)) {
-            showRateUsDialog()
-        }
-    }
+
+
 }
 
 fun ComponentActivity.checkWhatsNewCompose(releases: List<Release>, currVersion: Int, showWhatsNewDialog: (List<Release>) -> Unit) {
@@ -87,9 +72,7 @@ fun ComponentActivity.checkWhatsNewCompose(releases: List<Release>, currVersion:
     baseConfig.lastVersion = currVersion
 }
 
-fun ComponentActivity.upgradeToPro() {
-    return
-}
+
 
 
 

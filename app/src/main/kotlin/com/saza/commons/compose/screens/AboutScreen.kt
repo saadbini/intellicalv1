@@ -38,8 +38,6 @@ internal fun AboutScreen(
 
 @Composable
 internal fun HelpUsSection(
-    onRateUsClick: () -> Unit,
-    onInviteClick: () -> Unit,
     onContributorsClick: () -> Unit,
     showInvite: Boolean,
 ) {
@@ -47,9 +45,7 @@ internal fun HelpUsSection(
         SettingsTitleTextComponent(text = stringResource(id = R.string.help_us), modifier = startingTitlePadding)
     }) {
 
-        if (showInvite) {
-            TwoLinerTextItem(text = stringResource(id = R.string.invite_friends), icon = R.drawable.ic_add_person_vector, click = onInviteClick)
-        }
+
         TwoLinerTextItem(
             click = onContributorsClick,
             text = stringResource(id = R.string.contributors),
@@ -62,9 +58,6 @@ internal fun HelpUsSection(
 
 @Composable
 internal fun OtherSection(
-    showMoreApps: Boolean,
-    onMoreAppsClick: () -> Unit,
-    onWebsiteClick: () -> Unit,
     showPrivacyPolicy: Boolean,
     onPrivacyPolicyClick: () -> Unit,
     onLicenseClick: () -> Unit,
@@ -73,13 +66,7 @@ internal fun OtherSection(
     SettingsGroup(title = {
         SettingsTitleTextComponent(text = stringResource(id = R.string.other), modifier = startingTitlePadding)
     }) {
-        if (showMoreApps) {
-            TwoLinerTextItem(
-                click = onMoreAppsClick,
-                text = stringResource(id = R.string.more_apps_from_us),
-                icon = R.drawable.ic_heart_vector
-            )
-        }
+
 
         if (showPrivacyPolicy) {
             TwoLinerTextItem(
@@ -201,8 +188,6 @@ private fun AboutScreenPreview() {
             goBack = {},
             helpUsSection = {
                 HelpUsSection(
-                    onRateUsClick = {},
-                    onInviteClick = {},
                     onContributorsClick = {},
                     showInvite = true
                 )
@@ -220,9 +205,6 @@ private fun AboutScreenPreview() {
             }
         ) {
             OtherSection(
-                showMoreApps = true,
-                onMoreAppsClick = {},
-                onWebsiteClick = {},
                 showPrivacyPolicy = true,
                 onPrivacyPolicyClick = {},
                 onLicenseClick = {},

@@ -82,11 +82,7 @@ fun Activity.appLaunched(appId: String) {
     baseConfig.appRunCount++
 
 
-    if (baseConfig.appRunCount % 40 == 0 && !baseConfig.wasAppRated) {
-        if (!resources.getBoolean(R.bool.hide_google_relations)) {
-            RateStarsDialog(this)
-        }
-    }
+
 }
 
 
@@ -277,19 +273,7 @@ fun BaseSimpleActivity.showOTGPermissionDialog(path: String) {
     }
 }
 
-fun Activity.launchPurchaseThankYouIntent() {
-    hideKeyboard()
 
-}
-
-fun Activity.launchUpgradeToProIntent() {
-    hideKeyboard()
-
-}
-
-fun Activity.launchMoreAppsFromUsIntent() {
-    return
-}
 
 fun Activity.launchViewIntent(id: Int) = launchViewIntent(getString(id))
 

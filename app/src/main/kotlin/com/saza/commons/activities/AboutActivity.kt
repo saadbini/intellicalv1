@@ -55,13 +55,6 @@ class AboutActivity : ComponentActivity() {
                         val showHelpUsSection =
                             remember { showGoogleRelations || !showExternalLinks }
                         HelpUsSection(
-                            onRateUsClick = {
-                                onRateUsClick(
-                                    showConfirmationAdvancedDialog = onRateUsClickAlertDialogState::show,
-                                    showRateStarsDialog = rateStarsAlertDialogState::show
-                                )
-                            },
-                            onInviteClick = ::onInviteClick,
                             onContributorsClick = ::onContributorsClick,
                             showInvite = showHelpUsSection
                         )
@@ -86,9 +79,6 @@ class AboutActivity : ComponentActivity() {
                     }
                 ) {
                     OtherSection(
-                        showMoreApps = showGoogleRelations,
-                        onMoreAppsClick = ::launchMoreAppsFromUsIntent,
-                        onWebsiteClick = ::onWebsiteClick,
                         showPrivacyPolicy = showExternalLinks,
                         onPrivacyPolicyClick = ::onPrivacyPolicyClick,
                         onLicenseClick = ::onLicenseClick,
@@ -123,12 +113,9 @@ class AboutActivity : ComponentActivity() {
                     messageId = null,
                     positive = R.string.read_faq,
                     negative = R.string.skip
-                ) { success ->
-                    if (success) {
+                ) {
                         launchFAQActivity()
-                    } else {
-                        launchEmailIntent()
-                    }
+
                 }
             }
         }
@@ -143,12 +130,11 @@ class AboutActivity : ComponentActivity() {
                     messageId = null,
                     positive = R.string.read_faq,
                     negative = R.string.skip
-                ) { success ->
-                    if (success) {
+                ) {
+
                         launchFAQActivity()
-                    } else {
-                        launchRateUsPrompt(showRateStarsDialog)
-                    }
+
+
                 }
             }
         }
@@ -159,8 +145,6 @@ class AboutActivity : ComponentActivity() {
         if (intent.getBooleanExtra(SHOW_FAQ_BEFORE_MAIL, false) && !baseConfig.wasBeforeAskingShown) {
             baseConfig.wasBeforeAskingShown = true
             showConfirmationAdvancedDialog()
-        } else {
-            launchEmailIntent()
         }
     }
 
@@ -174,79 +158,25 @@ class AboutActivity : ComponentActivity() {
         }
     }
 
-    private fun launchEmailIntent() {
-        val appVersion = String.format(getString(R.string.app_version, intent.getStringExtra(APP_VERSION_NAME)))
-        val deviceOS = String.format(getString(R.string.device_os), Build.VERSION.RELEASE)
-        val newline = "\n"
-        val separator = "------------------------------"
-        val body = "$appVersion$newline$deviceOS$newline$separator$newline$newline"
-
-        val address = getString(R.string.my_email)
-
-        val selectorIntent = Intent(ACTION_SENDTO)
-            .setData("mailto:$address".toUri())
-        val emailIntent = Intent(ACTION_SEND).apply {
-            putExtra(EXTRA_EMAIL, arrayOf(address))
-            putExtra(EXTRA_SUBJECT, appName)
-            putExtra(EXTRA_TEXT, body)
-            selector = selectorIntent
-        }
-
-        try {
-            startActivity(emailIntent)
-        } catch (e: ActivityNotFoundException) {
-            val chooser = createChooser(emailIntent, getString(R.string.send_email))
-            try {
-                startActivity(chooser)
-            } catch (e: Exception) {
-                toast(R.string.no_email_client_found)
-            }
-        } catch (e: Exception) {
-            showErrorToast(e)
-        }
-    }
 
     private fun onRateUsClick(
         showConfirmationAdvancedDialog: () -> Unit,
         showRateStarsDialog: () -> Unit
     ) {
-        if (baseConfig.wasBeforeRateShown) {
-            launchRateUsPrompt(showRateStarsDialog)
-        } else {
+
             baseConfig.wasBeforeRateShown = true
             showConfirmationAdvancedDialog()
-        }
+
     }
 
-    private fun launchRateUsPrompt(
-        showRateStarsDialog: () -> Unit
-    ) {
-        if (baseConfig.wasAppRated) {
-            redirectToRateUs()
-        } else {
-            showRateStarsDialog()
-        }
-    }
 
-    private fun onInviteClick() {
-        val text = String.format(getString(R.string.share_text), appName, R.string.kotlin_url)
-        Intent().apply {
-            action = ACTION_SEND
-            putExtra(EXTRA_SUBJECT, appName)
-            putExtra(EXTRA_TEXT, text)
-            type = "text/plain"
-            startActivity(createChooser(this, getString(R.string.invite_via)))
-        }
-    }
+
 
     private fun onContributorsClick() {
         return
     }
 
 
-    private fun onDonateClick() {
-        launchViewIntent(getString(R.string.donate_url))
-    }
 
     private fun onFacebookClick() {
         return

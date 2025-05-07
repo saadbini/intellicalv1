@@ -15,5 +15,5 @@ fun Activity.rateStarsRedirectAndThankYou(stars: Int) {
         redirectToRateUs()
     }
     toast(R.string.thank_you)
-    baseConfig.wasAppRated = true
+
 }

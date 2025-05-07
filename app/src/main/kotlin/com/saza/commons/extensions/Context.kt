@@ -691,7 +691,6 @@ fun Context.saveExifRotation(exif: ExifInterface, degrees: Int) {
 
 fun Context.getLaunchIntent() = packageManager.getLaunchIntentForPackage(baseConfig.appId)
 
-fun Context.getCanAppBeUpgraded() = proPackages.contains(baseConfig.appId.removeSuffix(".debug").removePrefix("com.saza."))
 
 
 

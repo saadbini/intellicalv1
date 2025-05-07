@@ -72,7 +72,6 @@ class RateStarsDialog(val activity: Activity) {
         dialog?.dismiss()
         if (showThankYou) {
             activity.toast(R.string.thank_you)
-            activity.baseConfig.wasAppRated = true
         }
     }
 }
