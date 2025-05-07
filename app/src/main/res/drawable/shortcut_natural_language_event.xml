@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/shortcut_natural_language_event_background">
+        <shape android:shape="oval">
+            <solid android:color="@color/color_primary" />
+        </shape>
+    </item>
+    <item
+        android:drawable="@drawable/ic_natural_language_combined_vector"
+        android:top="@dimen/shortcut_icon_padding"
+        android:right="@dimen/shortcut_icon_padding"
+        android:bottom="@dimen/shortcut_icon_padding"
+        android:left="@dimen/shortcut_icon_padding" />
+</layer-list>

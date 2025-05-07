@@ -1,0 +1,179 @@
+[versions]
+# JetBrains
+kotlin = "1.9.10"
+kotlin-immutable-collections = "0.3.6"
+kotlinxSerializationJson = "1.5.1"
+
+# KSP (Kotlin Symbol Processing)
+ksp = "1.9.10-1.0.13"
+
+# AndroidX
+androidx-activity = "1.8.2"
+androidx-appcompat = "1.6.1"
+androidx-biometricKtx = "1.2.0-alpha05"
+androidx-constraintlayout = "2.1.4"
+androidx-coreKtx = "1.12.0"
+androidx-customView = "1.2.0-alpha02"
+androidx-customViewPooling = "1.0.0"
+androidx-documentfile = "1.0.1"
+androidx-exifinterface = "1.3.6"
+androidx-lifecycle = "2.7.0"
+androidx-multidex = "2.0.1"
+androidx-print = "1.0.0"
+androidx-swiperefreshlayout = "1.1.0"
+
+# Material (Android Views System)
+material = "1.10.0"
+
+# PatternLockView, Reprint, etc. (Third-party UI)
+patternLockView = "a90b0d4bf0"
+reprint = "2cb206415d" # Ensure this GAV is correct for the library you intend
+recyclerviewFastscroller = "5a95285b1f"
+rtlViewpager = "940f12724f"
+
+# Jetpack Compose
+composeBom = "2024.02.02"
+composeCompiler = "1.5.3" # Tied to Kotlin 1.9.10
+
+# Glide (Image Loading)
+glide = "4.16.0"
+glideCompose = "1.0.0-beta01"
+
+# Room (Database)
+room = "2.6.1"
+
+# Other Utilities
+ezVcard = "0.11.3"
+gson = "2.10.1"
+jodaTime = "2.12.5"
+threetenabp = "1.4.6"
+desugarJdkLibs = "2.0.4"
+
+# Gradle
+gradlePlugins-agp = "8.2.2" # Android Gradle Plugin
+
+# Build Configuration
+app-build-compileSDKVersion = "34"
+app-build-targetSDK = "34"
+app-build-minimumSDK = "23"
+app-build-javaVersion = "VERSION_17"
+app-build-kotlinJVMTarget = "17"
+
+# App Versioning
+app-version-appId = "com.saza.intellical"
+app-version-groupId = "com.saza.intellical"
+app-version-versionCode = "1"
+app-version-versionName = "5.34.26"
+
+[libraries]
+# Kotlin Standard Library & Coroutines (implicitly added by kotlin-android plugin)
+# kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutines" }
+
+# AndroidX Core & AppCompat
+androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidx-coreKtx" }
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
+androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "androidx-activity" }
+
+# AndroidX UI (Views System)
+androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "androidx-constraintlayout" }
+androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "androidx-swiperefreshlayout" }
+androidx-recyclerview-fastscroller = { module = "com.github.tibbi:RecyclerView-FastScroller", version.ref = "recyclerviewFastscroller" }
+androidx-rtl-viewpager = { module = "com.github.duolingo:rtl-viewpager", version.ref = "rtlViewpager" }
+androidx-customview = { module = "androidx.customview:customview", version.ref = "androidx-customView" }
+androidx-customview-poolingcontainer = { module = "androidx.customview:customview-poolingcontainer", version.ref = "androidx-customViewPooling" }
+
+# AndroidX Utilities
+androidx-multidex = { module = "androidx.multidex:multidex", version.ref = "androidx-multidex" }
+androidx-print = { module = "androidx.print:print", version.ref = "androidx-print" }
+androidx-documentfile = { module = "androidx.documentfile:documentfile", version.ref = "androidx-documentfile" }
+androidx-exifinterface = { module = "androidx.exifinterface:exifinterface", version.ref = "androidx-exifinterface" }
+androidx-biometric-ktx = { module = "androidx.biometric:biometric-ktx", version.ref = "androidx-biometricKtx" }
+
+# AndroidX Lifecycle
+androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose" }
+androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose" }
+
+# Room (Database)
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" } # KSP processor
+
+# Jetpack Compose - BOM
+compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+# Jetpack Compose - Individual Libraries (versions managed by BOM)
+compose-activity = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
+compose-foundation = { module = "androidx.compose.foundation:foundation" }
+compose-material3 = { module = "androidx.compose.material3:material3" }
+compose-material-icons-core = { module = "androidx.compose.material:material-icons-core" }
+compose-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
+compose-animation = { module = "androidx.compose.animation:animation" }
+compose-ui = { module = "androidx.compose.ui:ui" }
+compose-runtime = { module = "androidx.compose.runtime:runtime" }
+compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
+compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
+compose-ui-viewbinding = { module = "androidx.compose.ui:ui-viewbinding" }
+
+# Glide (Image Loading)
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+glide-ksp = { module = "com.github.bumptech.glide:ksp", version.ref = "glide" }
+glide-compose = { module = "com.github.bumptech.glide:compose", version.ref = "glideCompose" }
+
+# Material Components (Android Views System)
+material = { module = "com.google.android.material:material", version.ref = "material" }
+
+# Third-Party UI & Utilities
+patternlockview = { module = "com.github.aritraroy:PatternLockView", version.ref = "patternLockView" }
+reprint = { module = "com.github.tibbi:reprint", version.ref = "reprint" }
+ez-vcard = { module = "com.googlecode.ez-vcard:ez-vcard", version.ref = "ezVcard" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+joda-time = { module = "joda-time:joda-time", version.ref = "jodaTime" }
+threetenabp = { module = "com.jakewharton.threetenabp:threetenabp", version.ref = "threetenabp" }
+kotlin-immutable-collections = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlin-immutable-collections" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+
+# Desugaring
+desugar-jdkLibs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugarJdkLibs" }
+
+
+[bundles]
+# Jetpack Compose UI and Runtime
+compose-ui = [ # Renamed for clarity to match common usage
+    "compose-activity",
+    "compose-animation",
+    "compose-foundation",
+    "compose-material3",
+    "compose-material-icons-core",
+    "compose-material-icons-extended",
+    "compose-runtime",
+    "compose-ui",
+    "compose-ui-viewbinding",
+]
+# Jetpack Compose Debug/Tooling (for @Preview)
+compose-debug = [
+    "compose-ui-tooling",
+    "compose-ui-tooling-preview",
+    "androidx-customview",
+    "androidx-customview-poolingcontainer",
+]
+# Room Database
+room = [ # CHANGED BUNDLE NAME HERE
+    "androidx-room-ktx",
+    "androidx-room-runtime",
+]
+# AndroidX Lifecycle
+androidx-lifecycle = [
+    "androidx-lifecycle-runtime-ktx",
+    "androidx-lifecycle-viewmodel-ktx",
+    "androidx-lifecycle-runtime-compose",
+    "androidx-lifecycle-viewmodel-compose",
+]
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "gradlePlugins-agp" }
+android-library = { id = "com.android.library", version.ref = "gradlePlugins-agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

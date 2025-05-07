@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Missing dimensions -->
+    <dimen name="bottom_sheet_corner_radius">16dp</dimen>
+    <dimen name="material_button_corner_radius">8dp</dimen>
+    <dimen name="material_dialog_corner_radius">8dp</dimen>
+    <dimen name="normal_margin">16dp</dimen>
+    <dimen name="actionbar_text_size">18sp</dimen>
+    <dimen name="bigger_margin">24dp</dimen>
+    <dimen name="color_sample_size">48dp</dimen>
+    
+
+</resources>
