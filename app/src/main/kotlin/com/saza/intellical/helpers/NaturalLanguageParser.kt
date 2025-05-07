@@ -68,10 +68,8 @@ class NaturalLanguageParser(private val context: Context, private val contextTim
      * Represents a parsed event with all necessary fields to create a calendar event
      *
      * @property title Event title extracted from natural language description
-     * @property startTime Start timestamp in seconds since epoch
-     * @property endTime End timestamp in seconds since epoch
-     * @property hour Hour of day (0-23) for the event
-     * @property minute Minute (0-59) for the event
+     * @property startTime Start timestamp in milliseconds since epoch
+     * @property endTime End timestamp in milliseconds since epoch
      * @property location Location of the event (if mentioned)
      * @property description Additional description details (if any)
      * @property isRecurring Whether the event repeats
@@ -82,8 +80,6 @@ class NaturalLanguageParser(private val context: Context, private val contextTim
         val title: String,
         val startTime: Long,
         val endTime: Long,
-        val hour: Int = 14, // Default to 2 PM
-        val minute: Int = 0,
         val location: String = "",
         val description: String = "",
         val isRecurring: Boolean = false,
@@ -257,18 +253,11 @@ class NaturalLanguageParser(private val context: Context, private val contextTim
             buildDescription(text, personEntities)
         }
 
-        // Extract hour and minute from the startTime
-        val startDateTime = DateTime(timeInfo.startTime)
-        val hour = startDateTime.hourOfDay
-        val minute = startDateTime.minuteOfHour
-
-        // Create the parsed event with timestamps in seconds and explicit hour/minute
+        // Create the parsed event
         return ParsedEvent(
             title = title,
-            startTime = timeInfo.startTime / 1000,
-            endTime = timeInfo.endTime / 1000,
-            hour = hour,
-            minute = minute,
+            startTime = timeInfo.startTime,
+            endTime = timeInfo.endTime,
             location = location,
             description = description,
             isRecurring = timeInfo.recurrence?.isRecurring ?: false,
@@ -883,18 +872,10 @@ class NaturalLanguageParser(private val context: Context, private val contextTim
             title = "New Event"
         }
 
-        // Extract hour and minute from the startTime
-        val startDateTime = DateTime(startTime)
-        val hour = startDateTime.hourOfDay
-        val minute = startDateTime.minuteOfHour
-
-        // Convert milliseconds to seconds for compatibility with EventActivity
         return ParsedEvent(
             title = title,
-            startTime = startTime / 1000,
-            endTime = endTime / 1000,
-            hour = hour,
-            minute = minute,
+            startTime = startTime,
+            endTime = endTime,
             location = location,
             isRecurring = isRecurring,
             repeatInterval = repeatInterval

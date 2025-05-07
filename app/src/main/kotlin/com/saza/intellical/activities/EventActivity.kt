@@ -553,20 +553,11 @@ class EventActivity : SimpleActivity() {
             }
         } else {
             val startTS = intent.getLongExtra(NEW_EVENT_START_TS, 0L)
-            // Improved timestamp handling for natural language events
-            // Formatter.getDateTimeFromTS expects seconds, so convert if needed
+            // Check if timestamp seems to be in milliseconds (> year 2000) or seconds
             val dateTime = if (startTS > 31536000000L) { // > January 1, 2001
-                // This is definitely in milliseconds, convert to seconds
-                Formatter.getDateTimeFromTS(startTS / 1000)
-            } else if (startTS > 1000000000L && startTS < 2000000000L) {
-                // This is likely in seconds (between 2001-2033)
-                Formatter.getDateTimeFromTS(startTS)
-            } else if (startTS > 0) {
-                // For any other positive value, assume milliseconds
                 Formatter.getDateTimeFromTS(startTS / 1000)
             } else {
-                // Default to current time if no timestamp provided
-                Formatter.getDateTimeFromTS(System.currentTimeMillis() / 1000)
+                Formatter.getDateTimeFromTS(startTS)
             }
             mEventStartDateTime = dateTime
 
@@ -585,14 +576,9 @@ class EventActivity : SimpleActivity() {
             val endTS = intent.getLongExtra(NEW_EVENT_END_TS, 0L)
             if (endTS > 0) {
                 mEventEndDateTime = if (endTS > 31536000000L) { // > January 1, 2001
-                    // This is definitely in milliseconds, convert to seconds
                     Formatter.getDateTimeFromTS(endTS / 1000)
-                } else if (endTS > 1000000000L && endTS < 2000000000L) {
-                    // This is likely in seconds (between 2001-2033)
-                    Formatter.getDateTimeFromTS(endTS)
                 } else {
-                    // For any other positive value, assume milliseconds
-                    Formatter.getDateTimeFromTS(endTS / 1000)
+                    Formatter.getDateTimeFromTS(endTS)
                 }
             } else {
                 mEventEndDateTime = mEventStartDateTime.plusMinutes(addMinutes)

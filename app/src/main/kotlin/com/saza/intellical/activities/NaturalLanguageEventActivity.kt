@@ -197,37 +197,11 @@ class NaturalLanguageEventActivity : SimpleActivity() {
     private fun openEventActivity(parsedEvent: NaturalLanguageParser.ParsedEvent) {
         hideKeyboard()
 
-        // Get the current date and time
-        val currentDateTime = DateTime.now()
-
-        // For "tomorrow" in the input, use tomorrow's date
-        val tomorrow = currentDateTime.plusDays(1)
-        val inputLower = binding.naturalLanguageInput.text.toString().toLowerCase()
-
-        // Create a DateTime object for the event start time
-        val startDateTime = if (inputLower.contains("tomorrow")) {
-            // If "tomorrow" is in the input, use tomorrow's date with the parsed time
-            val hour = parsedEvent.hour
-            val minute = parsedEvent.minute
-            tomorrow.withHourOfDay(hour).withMinuteOfHour(minute).withSecondOfMinute(0)
-        } else {
-            // Otherwise use today's date with the parsed time
-            val hour = parsedEvent.hour
-            val minute = parsedEvent.minute
-            currentDateTime.withHourOfDay(hour).withMinuteOfHour(minute).withSecondOfMinute(0)
-        }
-
-        // Calculate end time (default to 1 hour later)
-        val endDateTime = startDateTime.plusHours(1)
-
-        // Convert to seconds for EventActivity
-        val startTS = startDateTime.seconds()
-        val endTS = endDateTime.seconds()
-
         val intent = Intent(this, EventActivity::class.java).apply {
             putExtra(EVENT_ID, 0L)
-            putExtra(NEW_EVENT_START_TS, startTS)
-            putExtra(NEW_EVENT_END_TS, endTS)
+            // The parser returns timestamps in milliseconds, but EventActivity expects seconds
+            putExtra(NEW_EVENT_START_TS, parsedEvent.startTime / 1000)
+            putExtra(NEW_EVENT_END_TS, parsedEvent.endTime / 1000)
             putExtra(NEW_EVENT_SET_HOUR_DURATION, false)
             putExtra(TITLE, parsedEvent.title)
             putExtra(LOCATION, parsedEvent.location)
