@@ -48,6 +48,8 @@ class NaturalLanguageEventActivity : SimpleActivity() {
 
         // Get the context timestamp passed from MainActivity (if available)
         contextTimestamp = intent.getLongExtra(NEW_EVENT_START_TS, System.currentTimeMillis())
+        // Convert seconds to milliseconds for correct parsing
+        contextTimestamp *= 1000L
 
         setupToolbar()
         updateColors()
